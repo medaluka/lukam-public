@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/usr/bin/bash
 #
 #       _     _
 #      (,\-~-/,)        Author			- Luka Medic
@@ -6,24 +6,18 @@
 #    __\   o   /__      Version			- 1.0
 #   (::  '-^-'  ::)     Description		- Script creates config files for rsyslog based on defined template and input file name.
 #    '-/       \-`						  Config File is created in the pwd dir
-#      \   '   /  		Setup			- wget 
-#      /   I   \  						  mkdir -p /opt/halcom/bin/				  
-#     (___/ \___) 						  touch /opt/halcom/bin/rsyslog_add_conf.sh
+#      \   '   /  		Setup			- wget https://raw.githubusercontent.com/medaluka/lukam-public/main/rsyslog_add_conf/rsyslog_add_conf.sh
+#      /   I   \                          mkdir -p /opt/halcom/bin/				  
+#     (___/ \___)                         cp rsyslog_add_conf.sh /opt/halcom/bin/rsyslog_add_conf.sh
 #                                         ln -s /opt/halcom/bin/rsyslog_add_conf.sh /usr/bin/rsyslog_add_conf
 #                                         chmod 744 /opt/halcom/bin/rsyslog_add_conf.sh
 #
-
 
 # mkdir -p /opt/halcom/bin/
 # touch /opt/halcom/bin/backup_file.sh
 # ln -s /opt/halcom/bin/backup_file.sh /usr/bin/backup_file
 # chmod 755 /opt/halcom/bin/backup_file.sh
 # vi /opt/halcom/bin/backup_file.sh
-
-
-
-
-#!/usr/bin/bash
 
 ## Params ##
 logfile_fullpath=$1
@@ -56,4 +50,4 @@ sed "s|###LOGFILE_NAME###|${logfile_name}|g" ${tmp_filename} | sed "s|###LOGFILE
 
 rm -f ${tmp_filename}
 
-echo "Created config file `basename ${conf_filename}`"
+echo "Created config file ${conf_filename}"
