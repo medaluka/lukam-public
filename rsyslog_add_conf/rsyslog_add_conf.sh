@@ -6,12 +6,18 @@
 #    __\   o   /__      Version			- 1.0
 #   (::  '-^-'  ::)     Description		- Script creates config files for rsyslog based on defined template and input file name.
 #    '-/       \-`						  Config File is created in the pwd dir
-#      \   '   /  		Setup			- wget https://raw.githubusercontent.com/medaluka/lukam-public/main/rsyslog_add_conf/rsyslog_add_conf.sh
-#      /   I   \                          mkdir -p /opt/halcom/bin/				  
-#     (___/ \___)                         cp rsyslog_add_conf.sh /opt/halcom/bin/rsyslog_add_conf.sh
-#                                         ln -s /opt/halcom/bin/rsyslog_add_conf.sh /usr/bin/rsyslog_add_conf
-#                                         chmod 744 /opt/halcom/bin/rsyslog_add_conf.sh
+#      \   '   /  		
+#      /   I   \        
+#     (___/ \___)       
 #
+#
+#Setup:
+# wget https://raw.githubusercontent.com/medaluka/lukam-public/main/rsyslog_add_conf/rsyslog_add_conf.sh
+# mkdir -p /opt/halcom/bin/				  
+# cp rsyslog_add_conf.sh /opt/halcom/bin/rsyslog_add_conf.sh
+# ln -s /opt/halcom/bin/rsyslog_add_conf.sh /usr/bin/rsyslog_add_conf
+# chmod 744 /opt/halcom/bin/rsyslog_add_conf.sh
+
 
 # mkdir -p /opt/halcom/bin/
 # touch /opt/halcom/bin/backup_file.sh
@@ -35,6 +41,7 @@ fi
 
 ## Template ##
 echo '# ###LOGFILE_NAME###                                 ' >> ${tmp_filename}
+echo '$ModLoad imfile                                      ' >> ${tmp_filename}
 echo '$InputFileName ###LOGFILE_PATH###/###LOGFILE_NAME### ' >> ${tmp_filename}
 echo '$InputFileTag ###LOGFILE_NAME###:                    ' >> ${tmp_filename}
 echo '$InputFileStateFile ###LOGFILE_NAME###.stat          ' >> ${tmp_filename}
